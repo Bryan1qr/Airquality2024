@@ -1,0 +1,471 @@
+{
+    "sources": [
+        {
+            "URL": "https://ggforce.data-imaginist.com",
+            "author": [
+                {
+                    "family": "Pedersen",
+                    "given": "Thomas Lin"
+                }
+            ],
+            "id": "R-ggforce",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024
+                    ]
+                ]
+            },
+            "note": "R package version 0.4.2",
+            "title": "Ggforce: Accelerating ggplot2",
+            "title-short": "Ggforce",
+            "type": "book"
+        },
+        {
+            "URL": "https://ggrepel.slowkow.com/",
+            "author": [
+                {
+                    "family": "Slowikowski",
+                    "given": "Kamil"
+                }
+            ],
+            "id": "R-ggrepel",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024
+                    ]
+                ]
+            },
+            "note": "R package version 0.9.5",
+            "title": "Ggrepel: Automatically position non-overlapping text labels with ggplot2",
+            "title-short": "Ggrepel",
+            "type": "book"
+        },
+        {
+            "URL": "https://jrnold.github.io/ggthemes/",
+            "author": [
+                {
+                    "family": "Arnold",
+                    "given": "Jeffrey B."
+                }
+            ],
+            "id": "R-ggthemes",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024
+                    ]
+                ]
+            },
+            "note": "R package version 5.1.0",
+            "title": "Ggthemes: Extra themes, scales and geoms for ggplot2",
+            "title-short": "Ggthemes",
+            "type": "book"
+        },
+        {
+            "URL": "https://glue.tidyverse.org/",
+            "author": [
+                {
+                    "family": "Hester",
+                    "given": "Jim"
+                },
+                {
+                    "family": "Bryan",
+                    "given": "Jennifer"
+                }
+            ],
+            "id": "R-glue",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024
+                    ]
+                ]
+            },
+            "note": "R package version 1.7.0",
+            "title": "Glue: Interpreted string literals",
+            "title-short": "Glue",
+            "type": "book"
+        },
+        {
+            "URL": "https://jkunst.com/highcharter/",
+            "author": [
+                {
+                    "family": "Kunst",
+                    "given": "Joshua"
+                }
+            ],
+            "id": "R-highcharter",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 0.9.4",
+            "title": "Highcharter: A wrapper for the highcharts library",
+            "title-short": "Highcharter",
+            "type": "book"
+        },
+        {
+            "URL": "http://haozhu233.github.io/kableExtra/",
+            "author": [
+                {
+                    "family": "Zhu",
+                    "given": "Hao"
+                }
+            ],
+            "id": "R-kableExtra",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024
+                    ]
+                ]
+            },
+            "note": "R package version 1.4.0",
+            "title": "kableExtra: Construct complex table with kable and pipe syntax",
+            "title-short": "kableExtra",
+            "type": "book"
+        },
+        {
+            "URL": "https://davidcarslaw.github.io/openair/",
+            "author": [
+                {
+                    "family": "Carslaw",
+                    "given": "David"
+                },
+                {
+                    "family": "Davison",
+                    "given": "Jack"
+                },
+                {
+                    "family": "Ropkins",
+                    "given": "Karl"
+                }
+            ],
+            "id": "R-openair",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024
+                    ]
+                ]
+            },
+            "note": "R package version 2.18-2",
+            "title": "Openair: Tools for the analysis of air pollution data",
+            "title-short": "Openair",
+            "type": "book"
+        },
+        {
+            "URL": "https://ycphs.github.io/openxlsx/index.html",
+            "author": [
+                {
+                    "family": "Schauberger",
+                    "given": "Philipp"
+                },
+                {
+                    "family": "Walker",
+                    "given": "Alexander"
+                }
+            ],
+            "id": "R-openxlsx",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "note": "R package version 4.2.5.2",
+            "title": "Openxlsx: Read, write and edit xlsx files",
+            "title-short": "Openxlsx",
+            "type": "book"
+        },
+        {
+            "URL": "https://patchwork.data-imaginist.com",
+            "author": [
+                {
+                    "family": "Pedersen",
+                    "given": "Thomas Lin"
+                }
+            ],
+            "id": "R-patchwork",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024
+                    ]
+                ]
+            },
+            "note": "R package version 1.2.0",
+            "title": "Patchwork: The composer of plots",
+            "title-short": "Patchwork",
+            "type": "book"
+        },
+        {
+            "URL": "https://zoo.R-Forge.R-project.org/",
+            "author": [
+                {
+                    "family": "Zeileis",
+                    "given": "Achim"
+                },
+                {
+                    "family": "Grothendieck",
+                    "given": "Gabor"
+                },
+                {
+                    "family": "Ryan",
+                    "given": "Jeffrey A."
+                }
+            ],
+            "id": "R-zoo",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "note": "R package version 1.8-12",
+            "title": "Zoo: S3 infrastructure for regular and irregular time series (z’s ordered observations)",
+            "title-short": "Zoo",
+            "type": "book"
+        },
+        {
+            "DOI": "10.1016/j.envsoft.2011.09.008",
+            "ISSN": "1364-8152",
+            "author": [
+                {
+                    "family": "Carslaw",
+                    "given": "David C."
+                },
+                {
+                    "family": "Ropkins",
+                    "given": "Karl"
+                }
+            ],
+            "container-title": "Environmental Modelling & Software",
+            "id": "openair2012",
+            "issue": "0",
+            "issued": {
+                "date-parts": [
+                    [
+                        2012
+                    ]
+                ]
+            },
+            "page": "52-61",
+            "title": "Openair — an r package for air quality data analysis",
+            "type": "article-journal",
+            "volume": "27–28"
+        },
+        {
+            "DOI": "10.21105/joss.01686",
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "Averick",
+                    "given": "Mara"
+                },
+                {
+                    "family": "Bryan",
+                    "given": "Jennifer"
+                },
+                {
+                    "family": "Chang",
+                    "given": "Winston"
+                },
+                {
+                    "family": "McGowan",
+                    "given": "Lucy D’Agostino"
+                },
+                {
+                    "family": "François",
+                    "given": "Romain"
+                },
+                {
+                    "family": "Grolemund",
+                    "given": "Garrett"
+                },
+                {
+                    "family": "Hayes",
+                    "given": "Alex"
+                },
+                {
+                    "family": "Henry",
+                    "given": "Lionel"
+                },
+                {
+                    "family": "Hester",
+                    "given": "Jim"
+                },
+                {
+                    "family": "Kuhn",
+                    "given": "Max"
+                },
+                {
+                    "family": "Pedersen",
+                    "given": "Thomas Lin"
+                },
+                {
+                    "family": "Miller",
+                    "given": "Evan"
+                },
+                {
+                    "family": "Bache",
+                    "given": "Stephan Milton"
+                },
+                {
+                    "family": "Müller",
+                    "given": "Kirill"
+                },
+                {
+                    "family": "Ooms",
+                    "given": "Jeroen"
+                },
+                {
+                    "family": "Robinson",
+                    "given": "David"
+                },
+                {
+                    "family": "Seidel",
+                    "given": "Dana Paige"
+                },
+                {
+                    "family": "Spinu",
+                    "given": "Vitalie"
+                },
+                {
+                    "family": "Takahashi",
+                    "given": "Kohske"
+                },
+                {
+                    "family": "Vaughan",
+                    "given": "Davis"
+                },
+                {
+                    "family": "Wilke",
+                    "given": "Claus"
+                },
+                {
+                    "family": "Woo",
+                    "given": "Kara"
+                },
+                {
+                    "family": "Yutani",
+                    "given": "Hiroaki"
+                }
+            ],
+            "container-title": "Journal of Open Source Software",
+            "id": "tidyverse2019",
+            "issue": "43",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "page": "1686",
+            "title": "Welcome to the tidyverse",
+            "type": "article-journal",
+            "volume": "4"
+        },
+        {
+            "DOI": "10.18637/jss.v014.i06",
+            "author": [
+                {
+                    "family": "Zeileis",
+                    "given": "Achim"
+                },
+                {
+                    "family": "Grothendieck",
+                    "given": "Gabor"
+                }
+            ],
+            "container-title": "Journal of Statistical Software",
+            "id": "zoo2005",
+            "issue": "6",
+            "issued": {
+                "date-parts": [
+                    [
+                        2005
+                    ]
+                ]
+            },
+            "page": "1-27",
+            "title": "Zoo: S3 infrastructure for regular and irregular time series",
+            "title-short": "Zoo",
+            "type": "article-journal",
+            "volume": "14"
+        },
+        {
+            "URL": "https://sinia.minam.gob.pe/normas/aprueban-estandares-calidad-ambiental-eca-aire-establecen-disposiciones",
+            "author": [
+                {
+                    "literal": "Ministerio del Ambiente"
+                }
+            ],
+            "container-title": "El peruano",
+            "id": "aireminam2017",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017
+                    ]
+                ]
+            },
+            "page": "6-9",
+            "title": "Decreto supremo n° 003-2017-MINAM que aprueba los estándares de calidad ambiental (ECA) para aire",
+            "type": "article-journal",
+            "volume": "34"
+        },
+        {
+            "URL": "https://iris.who.int/bitstream/handle/10665/345329/9789240034228-eng.pdf",
+            "author": [
+                {
+                    "family": "WHO"
+                }
+            ],
+            "container-title": "Geneva: World Health Organization",
+            "id": "oms2021",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "title": "WHO global air quality guidelines. Particulate matter (PM2.5 and PM10), ozone, nitrogen dioxide, sulfur dioxide and carbon monoxide",
+            "type": "article-journal"
+        },
+        {
+            "URL": "https://document.airnow.gov/technical-assistance-document-for-the-reporting-of-daily-air-quailty.pdf",
+            "author": [
+                {
+                    "literal": "United States Environmental Protection Agency"
+                }
+            ],
+            "id": "epa2024",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024
+                    ]
+                ]
+            },
+            "note": "Accessed: 2024-09-11",
+            "publisher": "United States Environmental Protection Agency",
+            "title": "Technical assistance document for the reporting of daily air quality – the air quality index (AQI)",
+            "type": "report"
+        }
+    ],
+    "project_biblios": []
+}
