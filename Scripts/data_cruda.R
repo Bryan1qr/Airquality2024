@@ -42,6 +42,16 @@ cruda <- function(meteo, gases, pm, fecha_inicio, fecha_fin, estacion, tipo){
     mutate_if(is.character, as.numeric)
   
   df <- cbind(p3, m1[,-1], g2[, -1])
+  df <- df %>% 
+    rename_at(
+      vars(names(.)),
+      ~ c("Fecha", "HR (%)", "PM2.5 (ug/m3)", 
+          "PM10 (ug/m3)", "Pres (mbar)",
+          "precip (mm)", "Temp (°C)", "wd (°)",
+          "ws (m/s)", "rad (kw/m2)", "no (ppb)",
+          "no2 (ppb)", "so2 (ppb)", "h2s (ppb)",
+          "co (ppb)", "o3 (ppb)"))
+  
   if (tipo == "save") {
     openxlsx::write.xlsx(
       df, paste0(estacion, ".xlsx"))

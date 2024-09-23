@@ -17,7 +17,7 @@ polar <- function(tabla, location){
     main = "D)")
   
   # Primeros plots:
-  png(filename = paste0("polares",location, ".png"),
+  png(filename = paste0("polares/polares",location, ".png"),
       width = 15, height = 18,
       units = "cm", res = 500)
   print(a, split = c(1, 1,2, 2))
