@@ -296,7 +296,8 @@ Así también se presenta el gráfico de rosa de viento donde se evidencia que e
 ```{r}
 #| fig-cap: "Rosa de vientos"
 #| fig-height: 4.5
-windRose(mydata = df$df, paddle = F, cols = "jet")
+coloreo <- c("#D95F02","yellow","#A6DBA0","#008837","#2171B5","#7B3294","#E7298A")
+windRose(mydata = df$df, paddle = F, cols = coloreo, breaks = c(0,0.2,0.3,1.5, 1.6, 3.3, 3.4, 5.4), key.position = "right")
 ```
 
 A continuación se presenta la información obtenida durante el periodo de medición respecto a los parámetros temperatura, precipitación, humedad relativa, presión, velocidad del viento y radiación solar.

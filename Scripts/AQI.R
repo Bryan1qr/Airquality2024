@@ -164,7 +164,7 @@ aqi_index <- function(df){
            fecha = as.Date(fecha, format = "%d-%B"),
            fecha = format(fecha, format = "%d")) %>% 
     ggplot(aes(y = tipo,x = factor(fecha), fill = category)) +
-    geom_tile(color = "white", lwd =1)+
+    geom_tile(color = "white", lwd =1) +
     geom_text(aes(label = aqi_ind)) +
     scale_fill_manual(values = aqi) +
     scale_y_discrete(labels = param2) +
