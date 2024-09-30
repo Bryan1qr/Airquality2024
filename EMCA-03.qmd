@@ -236,7 +236,7 @@ faceta(df)
 
 ### Gráficos polares
 
-En la figura 6 se aprecia que la representación bivariada de 4 parámetros de calidad de aire de interés $PM_{10}$, $PM_{2.5}$, $NO_2$ y $O_3$. En el caso del parámetro $PM_{10}$ este muestra mayores concentraciones con mayores niveles de velocidad de viento por la región que ocupa el oeste y el sur, en el caso del $PM_{2.5}$ los mayores concentraciones se encuentran donde los niveles de velocidad del viento son menores, en mayor medida hacia el norte. Las mayores concentraciones de $NO_2$ se presentan con valores reducidos de velocidad de viento, hacia todas las direcciones de viento del gráfico. Los valores de $O_3$ se presentan con valores altos de velocidad de viento con mayor predominancia hacia el oeste y hacia el suroeste.
+En la figura 6 se aprecia que la representación polar de 4 parámetros de calidad de aire de interés $PM_{10}$, $PM_{2.5}$, $NO_2$ y $O_3$. En el caso del parámetro $PM_{10}$ este muestra mayores concentraciones con mayores niveles de velocidad de viento por la región que ocupa el oeste y el sur, en el caso del $PM_{2.5}$ los mayores concentraciones se encuentran donde los niveles de velocidad del viento son menores, en mayor medida hacia el norte. Las mayores concentraciones de $NO_2$ se presentan con valores reducidos de velocidad de viento, hacia todas las direcciones de viento del gráfico. Los valores de $O_3$ se presentan con valores altos de velocidad de viento con mayor predominancia hacia el oeste y hacia el suroeste.
 
 ```{r}
 #| include: false
@@ -272,6 +272,10 @@ El siguiente gráfico muestra la distibución de los vientos en intervalos de 30
 
 ```{r}
 #| fig-cap: "Distibución de la dirección de los vientos"
+
+windRose(mydata = df$df, plot = FALSE) -> a
+a <- round(as.numeric(a$data$panel.fun[1]),2)
+
 nn$data %>% 
   ggplot(aes(x = factor(wd), y = freqs)) +
   geom_bar(stat = "identity", fill = "#08519C")+
@@ -280,13 +284,14 @@ nn$data %>%
        y = "Frecuencia (%)")
 ```
 
-Así también se presenta el gráfico de rosa de viento donde se evidencia que el promedio de velocidades es de 1.38 m/s.
+Así también se presenta el gráfico de rosa de viento donde se evidencia que el promedio de velocidades es de `r a` m/s. De acuerdo a los rangos propuestos por la @omm2023, los rangos de velocidades encontrados en este periodo de monitoreo se encuentran en las categorías de "brisa muy débil" y "brisa débil".
 
 ```{r}
 #| fig-cap: "Rosa de vientos"
 #| fig-height: 4.5
-coloreo <- c("#D95F02","yellow","#A6DBA0","#008837","#2171B5","#7B3294","#E7298A")
-windRose(mydata = df$df, paddle = F, cols = coloreo, breaks = c(0,0.2,0.3,1.5, 1.6, 3.3, 3.4, 5.4), key.position = "right")
+windRose(mydata = df$df, paddle = F, cols = "viridis",
+         breaks = c(0,0.2,1.5, 3.3,5.4),
+         key.position = "right", include.lowest = FALSE)
 ```
 
 A continuación se presenta la información obtenida durante el periodo de medición respecto a los parámetros temperatura, precipitación, humedad relativa, presión, velocidad del viento y radiación solar.
@@ -312,7 +317,7 @@ timePlot(
 
 -   El Índice de Calidad de Aire utilizado para determinar la calidad de aire en la zona de estudio muestra que durante los dias evaluados presentan las categorías de buenos en la mayoría de casos (a excepción del parámetro $PM_{2.5}$ y $PM_{10}$), la categoría de moderado se observó en todos los dias evaluados bajo el parámetro de $PM_{2.5}$ y en el caso del parámetro $PM_{10}$ este presenta la mayoría de sus casos la categoría de bueno a excepción del día 14 de agosto.
 
--   En cuanto a los parámetros meteorológicos se destaca la predominancia del viento suroeste (210°) y el valor medio de la velocidad del viento en 1.38 m/s.
+-   En cuanto a los parámetros meteorológicos se destaca la predominancia del viento suroeste (210°) y el valor medio de la velocidad del viento en `r a` m/s.
 
 # Referencias
 

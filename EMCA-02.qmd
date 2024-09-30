@@ -294,16 +294,16 @@ nn$data %>%
        y = "Frecuencia (%)")
 ```
 
-Así también se presenta el gráfico de rosa de viento donde se evidencia que el promedio de velocidades es de `r a` m/s.
+Así también se presenta el gráfico de rosa de viento donde se evidencia que el promedio de velocidades es de `r a` m/s. De acuerdo a los rangos propuestos por la @omm2023, los rangos de velocidades encontrados en este periodo de monitoreo se encuentran en las categorías de "brisa muy débil" y "brisa débil".
 
 ```{r}
 #| fig-cap: "Rosa de vientos"
 #| fig-height: 4.5
-
-coloreo <- c("#D95F02","yellow","#A6DBA0","#008837","#2171B5","#7B3294","#E7298A")
-windRose(mydata = df$df, paddle = F, cols = coloreo,
-         breaks = c(0,0.2,0.3,1.5, 1.6, 3.3, 3.4, 5.4), key.position = "right")
+windRose(mydata = df$df, paddle = F, cols = "viridis",
+         breaks = c(0,0.2,1.5, 3.3,5.4),
+         key.position = "right", include.lowest = FALSE)
 ```
+
 
 A continuación se presenta la información obtenida durante el periodo de medición respecto a los parámetros temperatura, precipitación, humedad relativa, presión, velocidad del viento y radiación solar.
 
