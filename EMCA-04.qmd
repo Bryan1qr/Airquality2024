@@ -1,5 +1,5 @@
 ---
-title: "Calidad de aire agosto - 2024"
+title: "Cuarto Informe de Calidad de Aire - 2024"
 subtitle: "Distrito de Tacna - Escuela de Posgrado UNJBG"
 date: "2024-09-03"
 author: "Gobierno Regional de Tacna"
@@ -84,7 +84,7 @@ distrito <- "Tacna"
 lugar <- "la Escuela de Posgrado de la Universidad Nacional Jorge Basadre Grohmann"
 ```
 
-El presente reporte muestra los resultados del monitoreo de la calidad de aire, el cual fue realizado con la estación de monitoreo de calidad de aire del Gobierno Regional de Tacna en un espacio proporcionado por `r lugar` en el distrito de `r distrito` durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))`. Los parámetros de calidad de aire evaluados fueron material particulado con diámetro menor a 2.5 micras, material particulado con diámetro menor a 10 micras, dióxido de nitrógeno, ozono troposférico, monóxido de carbono, dióxido de azufre, sulfuro de hidrógeno y datos meteorológicos generados por la estación de monitoreo. Las concentraciones de cada uno de estos parámetros no deben superar el Estándar de Calidad Ambiental para Aire (ECA-aire), establecidos mediante el D.S. N° 003-2017-MINAM [@aireminam2017], a fin de evitar problemas en la salud de las personas y el ambiente. También se ha considerado en el análisis los niveles recomendados por las Directrices de la Organización Mundial de la Salud [@oms2021] sobre la calidad del aire. Como principales paquetes computacionales de R para llevar a cabo el procesamiento de la información se tiene a openair [@openair2012], zoo [@zoo2005] y tidyverse [@tidyverse2019].
+El presente reporte muestra los resultados del monitoreo de la calidad de aire, el cual fue realizado con la estación de monitoreo de calidad de aire del Gobierno Regional de Tacna en un espacio proporcionado por `r lugar` en el distrito de `r distrito` durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))`. Los parámetros de calidad de aire evaluados fueron $PM_{2.5}$, $PM_{10}$, $NO_2$, $O_3$, $CO$, $SO_2$, $H_2S$ y datos meteorológicos generados por la estación de monitoreo. Las concentraciones de cada uno de estos parámetros no deben superar el Estándar de Calidad Ambiental para Aire (ECA-aire), establecidos mediante el D.S. N° 003-2017-MINAM [@aireminam2017], a fin de evitar problemas en la salud de las personas y el ambiente. También se ha considerado en el análisis los niveles recomendados por las Directrices de la Organización Mundial de la Salud [@oms2021] sobre la calidad del aire. Como principales paquetes computacionales de R para llevar a cabo el procesamiento de la información se tiene a openair [@openair2012], zoo [@zoo2005] y tidyverse [@tidyverse2019].
 
 +------------+----------+---------------+------------------------------+----------------------------------------------------------+
 | Parámetros | Período  | Valor (ug/m3) | Criterios de evaluación      | Método de análisis[^1]                                   |
@@ -140,7 +140,7 @@ Una manera muy útil de medir la calidad de aire de diferentes zonas del país e
 Durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` se realizó el monitoreo de calidad del aire, en el `r lugar` en el distrito de `r distrito`, utilizando la Estación Móvil de Monitoreo de Calidad de aire del Gobierno Regional de Tacna.
 
 ```{r fig.cap=glue("Mapa de Ubicación de la estación {cod}")}
-knitr::include_graphics("mapas/output_4.png", dpi = 390)
+knitr::include_graphics("mapas/output_4.png", dpi = 360)
 ```
 
 # Parámetros de calidad de aire

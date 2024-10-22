@@ -88,7 +88,8 @@ lugar <- 'Universidad Nacional "Jorge Basadre Grohmann"'
 
 ```
 
-El presente reporte muestra los resultados del monitoreo de la calidad de aire, el cual fue realizado con la estación de monitoreo de calidad de aire del Gobierno Regional de Tacna en un espacio proporcionado por `r lugar` en el distrito de `r distrito` durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))`. Los parámetros de calidad de aire evaluados fueron material particulado con diámetro menor a 2.5 micras, material particulado con diámetro menor a 10 micras, dióxido de nitrógeno, ozono troposférico, monóxido de carbono, dióxido de azufre, sulfuro de hidrógeno y datos meteorológicos generados por la estación de monitoreo. Las concentraciones de cada uno de estos parámetros no deben superar el Estándar de Calidad Ambiental para Aire (ECA-aire), establecidos mediante el D.S. N° 003-2017-MINAM [@aireminam2017], a fin de evitar problemas en la salud de las personas y el ambiente. También se ha considerado en el análisis los niveles recomendados por las Directrices de la Organización Mundial de la Salud [@oms2021] sobre la calidad del aire. Como principales paquetes computacionales de R para llevar a cabo el procesamiento de la información se tiene a openair [@openair2012], zoo [@zoo2005] y tidyverse [@tidyverse2019].
+
+El presente reporte muestra los resultados del monitoreo de la calidad de aire, el cual fue realizado con la estación de monitoreo de calidad de aire del Gobierno Regional de Tacna en un espacio proporcionado por `r lugar` en el distrito de `r distrito` durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))`. Los parámetros de calidad de aire evaluados fueron $PM_{2.5}$, $PM_{10}$, $NO_2$, $O_3$, $CO$, $SO_2$, $H_2S$ y datos meteorológicos generados por la estación de monitoreo. Las concentraciones de cada uno de estos parámetros no deben superar el Estándar de Calidad Ambiental para Aire (ECA-aire), establecidos mediante el D.S. N° 003-2017-MINAM [@aireminam2017], a fin de evitar problemas en la salud de las personas y el ambiente. También se ha considerado en el análisis los niveles recomendados por las Directrices de la Organización Mundial de la Salud [@oms2021] sobre la calidad del aire. Como principales paquetes computacionales de R para llevar a cabo el procesamiento de la información se tiene a openair [@openair2012], zoo [@zoo2005] y tidyverse [@tidyverse2019].
 
 +------------+----------+---------------+------------------------------+----------------------------------------------------------+
 | Parámetros | Período  | Valor (ug/m3) | Criterios de evaluación      | Método de análisis[^1]                                   |
@@ -112,7 +113,7 @@ El presente reporte muestra los resultados del monitoreo de la calidad de aire, 
 | $H_{2}S$   | 24 horas | 150           | Media aritmética             | Fluorescencia ultravioleta (método automático)           |
 +------------+----------+---------------+------------------------------+----------------------------------------------------------+
 
-: Estándares de Calidad Ambiental para Aire
+: Estándares de Calidad Ambiental para Aire - D.S. N° 003-2017 MINAM
 
 [^1]: O método equivalente aprobado
 
@@ -142,7 +143,7 @@ Una manera muy útil de medir la calidad de aire de diferentes zonas del país e
 Durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` se realizó el monitoreo de calidad del aire, en el `r lugar` en el distrito de `r distrito`, utilizando la Estación Móvil de Monitoreo de Calidad de aire del Gobierno Regional de Tacna.
 
 ```{r fig.cap=glue("Mapa de Ubicación de la estación {cod}")}
-knitr::include_graphics("mapas/output_6.png", dpi = 390)
+knitr::include_graphics("mapas/output_6.png", dpi = 360)
 ```
 
 # Parámetros de calidad de aire
@@ -150,7 +151,7 @@ knitr::include_graphics("mapas/output_6.png", dpi = 390)
 Con los datos obtenidos de la estación de monitoreo de la calidad del aire del Gobierno Regional de Tacna, se realizó un análisis de la variabilidad horaria de las concentraciones de $PM_{10}, PM_{2.5}, CO, NO_2, O_3, SO_2$ y $H_2S$ las cuales se presentan en la figura 2 y están expresadas en $ug/m^3$.
 
 ```{r}
-#| fig-cap: "Datos horarios de calidad de aire (ug/m3)"
+#| fig-cap: "Datos horarios de los parámetros de calidad de aire (ug/m3)"
 #| fig-height: 10
 #| fig-width: 8
 timePlot(
@@ -232,7 +233,7 @@ Sin embargo, al realizar la comparación con las Directrices sobre la calidad de
 
 ### Concentraciones horarias de los parámetros monitoreados
 
-A continuación, se muestran las concentraciones horarias de los parámetros comparados de forma referencial con los Estándares de Calidad Ambiental (ECA) para aire del Perú y los niveles de la Directriz de la Organización Mundial de la Salud (OMS). El gráfico muestra que los parámetros $PM_{2.5}$, $PM_{10}$ y $NO_2$ sn algunas horas de monitoreo, ambos umbrales de referencia, en el caso de los parámetros $O_3$, $SO_2$, $H_2S$ y $CO$ no se llega a superar estos umbrales en ningún momento del periodo de monitoreo. Así también, de forma complementaria en la figura 5 para una mejor comprensión, se muestra el comportamiento semanal de cada uno de los parámetros monitoreados. 
+A continuación, se muestran las concentraciones horarias de los parámetros comparados de forma referencial con los Estándares de Calidad Ambiental (ECA) para aire del Perú y los niveles de la Directriz de la Organización Mundial de la Salud (OMS). El gráfico muestra que los parámetros $PM_{2.5}$, $PM_{10}$ y $NO_2$ superan en algunas horas de monitoreo, ambos umbrales de referencia, en el caso de los parámetros $O_3$, $SO_2$, $H_2S$ y $CO$ no se llega a superar estos umbrales en ningún momento del periodo de monitoreo. Así también, de forma complementaria en la figura 5 para una mejor comprensión, se muestra el comportamiento semanal de cada uno de los parámetros monitoreados. 
 
 ```{r fig.cap = glue(paste("Comparación referencial de concentraciones horarias con el Estándar de Calidad Ambiental de Aire del ", format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech}")))}
 #| fig-height: 12
@@ -270,7 +271,7 @@ knitr::include_graphics("polares/polares_unjbg2.png", dpi = 450)
 
 ## Índice de Calidad de Aire
 
-l índice de Calidad de Aire (AQI por sus siglas en inglés) muestra los estados de la calidad del aire, en general la zona monitoreada del `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` presenta estado de calidad del aire **“Bueno”** en los parámetros $NO_2$, $O_3$, $SO_2$, y $CO$,  durante todos los días de medición. En el caso del $PM_{2.5}$ se observa que del 27 de setiembre al 07 de octubre presenta estado de calidad del aire **“Moderado”**, que puede no ser favorable para personas sensibles a una exposición prolongada de este parámetro en la zona de evaluación. Finalmente, respecto al parámetro$PM_{10}$ este presenta estado de calidad de aire **“Bueno”** en casi todos los días monitoreados, a excepción del día 04 de octubre con estado de calidad del aire **“Moderado”.**
+El índice de Calidad de Aire (AQI por sus siglas en inglés) muestra los estados de la calidad del aire, en general la zona monitoreada del `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` presenta estado de calidad del aire **“Bueno”** en los parámetros $NO_2$, $O_3$, $SO_2$, y $CO$,  durante todos los días de medición. En el caso del $PM_{2.5}$ se observa que del 27 de setiembre al 07 de octubre presenta estado de calidad del aire **“Moderado”**, que puede no ser favorable para personas sensibles a una exposición prolongada de este parámetro en la zona de evaluación. Finalmente, respecto al parámetro$PM_{10}$ este presenta estado de calidad de aire **“Bueno”** en casi todos los días monitoreados, a excepción del día 04 de octubre con estado de calidad del aire **“Moderado”.**
 
 ```{r fig.cap = glue(paste("Índice de Calidad de Aire -", format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech2}")))}
 #| fig-height: 3.6

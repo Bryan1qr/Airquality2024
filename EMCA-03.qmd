@@ -1,5 +1,5 @@
 ---
-title: "Calidad de aire agosto - 2024"
+title: "Tercer Informe de Calidad de Aire - 2024"
 subtitle: "Distrito de Ciudad Nueva"
 date: "2024-08-27"
 author: "Gobierno Regional de Tacna"
@@ -83,8 +83,8 @@ distrito <- "Ciudad Nueva"
 lugar <- 'la Institución Educativa Manuel A. Odría"'
 ```
 
-El presente reporte muestra los resultados del monitoreo de la calidad de aire, el cual fue realizado con la estación de monitoreo de calidad de aire del Gobierno Regional de Tacna en un espacio proporcionado por `r lugar` en el distrito de `r distrito` durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))`. Los parámetros de calidad de aire evaluados fueron material particulado con diámetro menor a 2.5 micras, material particulado con diámetro menor a 10 micras, dióxido de nitrógeno, ozono troposférico, monóxido de carbono, dióxido de azufre, sulfuro de hidrógeno y datos meteorológicos generados por la estación de monitoreo. Las concentraciones de cada uno de estos parámetros no deben superar el Estándar de Calidad Ambiental para Aire (ECA-aire), establecidos mediante el D.S. N° 003-2017-MINAM [@aireminam2017], a fin de evitar problemas en la salud de las personas y el ambiente. También se ha considerado en el análisis los niveles recomendados por las Directrices de la Organización Mundial de la Salud [@oms2021] sobre la calidad del aire. Como principales paquetes computacionales de R para llevar a cabo el procesamiento de la información se tiene a openair [@openair2012], zoo [@zoo2005] y tidyverse [@tidyverse2019].
-  
+El presente reporte muestra los resultados del monitoreo de la calidad de aire, el cual fue realizado con la estación de monitoreo de calidad de aire del Gobierno Regional de Tacna en un espacio proporcionado por `r lugar` en el distrito de `r distrito` durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))`. Los parámetros de calidad de aire evaluados fueron $PM_{2.5}$, $PM_{10}$, $NO_2$, $O_3$, $CO$, $SO_2$, $H_2S$ y datos meteorológicos generados por la estación de monitoreo. Las concentraciones de cada uno de estos parámetros no deben superar el Estándar de Calidad Ambiental para Aire (ECA-aire), establecidos mediante el D.S. N° 003-2017-MINAM [@aireminam2017], a fin de evitar problemas en la salud de las personas y el ambiente. También se ha considerado en el análisis los niveles recomendados por las Directrices de la Organización Mundial de la Salud [@oms2021] sobre la calidad del aire. Como principales paquetes computacionales de R para llevar a cabo el procesamiento de la información se tiene a openair [@openair2012], zoo [@zoo2005] y tidyverse [@tidyverse2019].
+
 +------------+----------+---------------+------------------------------+----------------------------------------------------------+
 | Parámetros | Período  | Valor (ug/m3) | Criterios de evaluación      | Método de análisis[^1]                                   |
 +============+==========+===============+==============================+==========================================================+
@@ -107,7 +107,11 @@ El presente reporte muestra los resultados del monitoreo de la calidad de aire, 
 | $H_{2}S$   | 24 horas | 150           | Media aritmética             | Fluorescencia ultravioleta (método automático)           |
 +------------+----------+---------------+------------------------------+----------------------------------------------------------+
 
-: Estándares de Calidad Ambiental para Aire  -  D.S. N° 003-2017-MINAM
+: Estándares de Calidad Ambiental para Aire - D.S. N° 003-2017 MINAM
+
+[^1]: O método equivalente aprobado
+
+[^2]: NE: No exceder más de una cantidad
 
 Una manera muy útil de medir la calidad de aire de diferentes zonas del país era utilizando el Índice de Calidad de Aire del Perú, sin embargo, este instrumento técnico se encuentra desactualizado respecto a la normativa vigente. Por lo cual en este estudio se utilizó el Índice de Calidad de Aire (AQI por sus siglas en inglés) de la Agencia de Protección Ambiental de los Estados Unidos [@epa2024], cuya simbología se aprecia en la tabla 2.
 
@@ -130,20 +134,19 @@ Una manera muy útil de medir la calidad de aire de diferentes zonas del país e
 
 # **Estación de monitoreo de calidad de aire `r cod`**
 
-Durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` se realizó el monitoreo de calidad de aire, en `r lugar` en el distrito de `r distrito`, utilizando la Estación Móvil de Monitoreo de Calidad de aire del Gobierno Regional de Tacna.
+Durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` se realizó el monitoreo de calidad del aire, en `r lugar` en el distrito de `r distrito`, utilizando la Estación Móvil de Monitoreo de Calidad de aire del Gobierno Regional de Tacna.
 
 ```{r fig.cap=glue("Mapa de Ubicación de la estación {cod}")}
-knitr::include_graphics("mapas/output_3.png", dpi = 370)
+knitr::include_graphics("mapas/output_3.png", dpi = 360)
 ```
 
 # Parámetros de calidad de aire
 
-ECon los datos obtenidos de la estación de monitoreo de la calidad del aire del Gobierno Regional de Tacna, se realizó un análisis de la variabilidad horaria de las concentraciones de $PM_{10}, PM_{2.5}, CO, NO_2, O_3, SO_2$ y $H_2S$ las cuales se presentan en la figura 2 y están expresadas en $ug/m^3$.
+Con los datos obtenidos de la estación de monitoreo de la calidad del aire del Gobierno Regional de Tacna, se realizó un análisis de la variabilidad horaria de las concentraciones de $PM_{10}, PM_{2.5}, CO, NO_2, O_3, SO_2$ y $H_2S$ las cuales se presentan en la figura 2 y están expresadas en $ug/m^3$.
 
 
 ```{r}
-#| fig-cap: "Datos horarios de calidad de aire de la estación evaluada"
-#| fig-subcap: "Parámetros de calidad de aire (ug/m3)"
+#| fig-cap: "Datos horarios de los parámetros de calidad de aire (ug/m3)"
 #| fig-height: 10
 #| fig-width: 8
 timePlot(
@@ -159,11 +162,13 @@ timePlot(
 
 ## Comparación con el Estándar de Calidad de aire
 
-### Datos diarios de calidad de aire
+### Concentraciones diarias de los parámetros monitoreados
 
-A continuación, se presenta la comparación de los valores obtenidos durante el monitoreo de calidad de aire, con los valores de referencia que proporciona el Estándar de Calidad Ambiental de Aire.
+A continuación, se presenta la comparación de las concentraciones diarias obtenidas durante el monitoreo de calidad de aire, con los valores que establece el Estándar de Calidad Ambiental de Aire (D.S. N° 003-2017-MINAM).
 
-```{r fig.cap = glue(paste("Comparación de datos diarios con el Estándar de Calidad Ambiental de Aire -", format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech}")))}
+Así mismo se compara con los niveles recomendados de las Directrices de la OMS sobre la calidad del aire, la cual ofrece recomendaciones cuantitativas relativas a la salud para la gestión de la calidad del aire.
+
+```{r fig.cap = glue(paste("Comparación de concentraciones diarias con el ECA-aire del ",format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech}")))}
 #| fig-height: 6
 #| fig-width: 10
 source("Scripts/eca_barras.R")
@@ -172,7 +177,7 @@ barras_eca(lista = df,
            ruta = "xd")
 ```
 
-Por otro lado los valores diarios registrados de los parámetros $SO_2$, $H_{2}S$ y $CO$ se muestran en la siguiente tabla:
+Por otro lado, las concentraciones diarias de los parámetros $SO_2$, $H_{2}S$ y $CO$ se muestran en la siguiente tabla:
 
 ```{r}
 #| tbl-cap: "Comparación con el ECA de los datos diarios"
@@ -217,13 +222,15 @@ df$eca %>%
   row_spec(0, bold = FALSE)
 ```
 
-Lo visto en la figura 3 y la tabla 3 muestra que los valores diarios medidos no superan el Estándar de Calidad Ambiental de Aire en ningún día de medición. Sin embargo, al realizar la comparación con el Estándar de Calidad de Aire de la Organización Mundial de la Salud (OMS), los parámetros $PM_{2.5}$, $PM_{10}$ y $NO_2$ superan su estándar de calidad en varios dias de medición.
+Lo visto en la figura 3 y la tabla 3 muestra que las concentraciones diarias no superan el Estándar de Calidad Ambiental de Aire en ningún día de monitoreo. En el caso del $PM_{2.5}$ la concentración diaria más alta se dio el sábado 17 de agosto con 22.94 ug/m3 y en el caso del $PM_{10}$ la concentración diaria más alta se dio el día 14 de agosto con 55.65 ug/m3.
 
-### Datos horarios de calidad de aire
+Sin embargo, al realizar la comparación con las Directrices sobre la calidad de aire de la Organización Mundial de la Salud (OMS), los parámetros $PM_{2.5}$, $PM_{10}$ y $NO_2$ ssuperan estos valores en varios días de monitoreo.
 
-A continuación se muestran los datos por hora de los parámetros comparables con los Estándares de Calidad de Aire del Perú (ECA) y los Umbrales de Calidad de Aire Global de la Organización Mundial de la Salud (OMS). El gráfico muestra que los parámetros $PM_{2.5}$ y $PM_{10}$ superan los umbrales de ambos estándares en algunos momentos de medición, en el caso de los parámetros $NO_2$, $O_3$, $SO_2$, $H_{2}S$ y $CO$ no se llega a superar ninguno de los estándares en ningún momento del periodo de monitoreo. Así también, para una comprensión semanal de los datos horarios ver la figura 5.
+### Concentraciones horarias de los parámetros monitoreados
 
-```{r fig.cap = glue(paste("Comparación de datos horarios con el Estándar de Calidad Ambiental de Aire -", format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech}")))}
+A continuación, se muestran las concentraciones horarias de los parámetros comparados de forma referencial con los Estándares de Calidad Ambiental (ECA) para aire del Perú y los niveles de la Directriz de la Organización Mundial de la Salud (OMS). El gráfico muestra que los parámetros $PM_{2.5}$ y $PM_{10}$ superan en algunas horas de monitoreo, ambos umbrales de referencia, en el caso de los parámetros $NO_2$, $O_3$, $SO_2$, $H_{2}S$ y $CO$ no se llega a superar estos umbrales en ningún momento del periodo de monitoreo. Así también, de forma complementaria en la figura 5 para una mejor comprensión, se muestra el comportamiento semanal de cada uno de los parámetros monitoreados.
+
+```{r fig.cap = glue(paste("Comparación referencial de concentraciones horarias con el Estándar de Calidad Ambiental de Aire del ", format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech}")))}
 #| fig-height: 13
 #| fig-width: 10
 source("Scripts/ggplot_graphics.R")
@@ -242,7 +249,9 @@ faceta(df)
 
 ### Gráficos polares
 
-En la figura 6 se aprecia que la representación polar de 4 parámetros de calidad de aire de interés $PM_{10}$, $PM_{2.5}$, $NO_2$ y $O_3$. En el caso del parámetro 𝑃𝑀10 esta muestra mayores concentraciones con mayores niveles de velocidad de viento los cuales provienen principalmente de dirección oeste y suroeste, en el caso del $PM_{2.5}$ las mayores concentraciones se dan a bajos niveles de velocidad del viento, y en mayor medida de dirección norte. Así mismo según el gráfico, las mayores concentraciones de $NO_2$ se presentan a valores reducidos de velocidad de viento, en todas las direcciones de viento. Los valores de $O_3$ se presentan con valores altos de velocidad de viento y provenientes con mayor predominancia de dirección oeste y suroeste.
+Son gráficos que presentan una relación entre las concentraciones horarias de los contaminantes y el comportamiento de los vientos. La dirección del viento se muestra en el plano cartesiano, la velocidad del viento en las circunferencias, la cual aumenta a medida que se aleja del origen, y la concentración en la paleta de colores.
+
+En la figura 6 se aprecia la representación polar de 4 parámetros de calidad de aire de interés $PM_{10}$, $PM_{2.5}$, $NO_2$ y $O_3$. En el caso del parámetro $PM_{10}$, esta muestra mayores concentraciones con mayores niveles de velocidad de viento los cuales provienen principalmente de dirección oeste y suroeste, en el caso del $PM_{2.5}$ las mayores concentraciones se dan a bajos niveles de velocidad del viento, y en mayor medida de dirección norte. Así mismo según el gráfico, las mayores concentraciones de $NO_2$ se presentan a valores reducidos de velocidad de viento, en todas las direcciones de viento. Los valores de $O_3$ se presentan con valores altos de velocidad de viento y provenientes con mayor predominancia de dirección oeste y suroeste.
 
 ```{r}
 #| include: false
@@ -252,12 +261,12 @@ polar(df$df, location = "_odria")
 
 ```{r}
 #| fig-cap: "Gráficos polares de los principales parámetros evaluados"
-knitr::include_graphics("polares/polares_odria.png", dpi = 390)
+knitr::include_graphics("polares/polares_odria.png", dpi = 450)
 ```
 
 ## Índice de Calidad de Aire
 
-El índice de Calidad de Aire (AQI por sus siglas en inglés) muestra que, en general la zona monitoreada durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` presenta valores categorizados como "buenos" en los parámetros $NO_2$, $O_3$, $SO_2$, y $CO$ durante todos los dias de medición. En el caso del $PM_{2.5}$ se observa que todos los valores que presenta se encuentran en la categoría "Moderado" que puede no ser favorable para personas sensibles a una exposición prolongada de este parámetro en la zona de evaluación. Finalmente los valores de $PM_{10}$ se encuentran dentro de la categoría "bueno" en casi todos los días de medición debido que el día 14 se encontraba en un nivel "moderado".
+El índice de Calidad de Aire (AQI por sus siglas en inglés) muestra los estados de la calidad del aire, en general la zona monitoreada durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` presenta estados de calidad de aire **“Bueno”** en los parámetros $NO_2$, $O_3$, $SO_2$, y $CO$, durante todos los días de medición. En el caso del $PM_{2.5}$ se observa que presenta todos los días estado de calidad del aire **“Moderado”**, que puede no ser favorable para personas sensibles a una exposición prolongada de este parámetro en la zona de evaluación. Finalmente, los valores de $PM_{10}$ presenta estado de calidad de aire **“Bueno”** en casi todos los días monitoreados, a excepción del día 14 con estado de calidad del aire **“Moderado”.**
 
 ```{r fig.cap = glue(paste("Índice de Calidad de Aire -", format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech}")))}
 #| fig-height: 3.6
@@ -319,11 +328,15 @@ timePlot(
 
 # Conclusiones
 
--   Los datos diarios de los parámetros de calidad de aire muestran que la zona evaluada cumple con los Estándares de Calidad Ambiental de la normativa peruana, sin embargo, al ser contrastados por lo sugerido en los valores umbrales de la Organización Mundial de la Salud los parámetros $PM_{2.5}$, $PM_{10}$ y $NO_2$ no cumplen con sus valores de referencia respectivos.
+-   Las concentraciones diarias de material particulado en la zona evaluada cumple con los Estándar de Calidad Ambiental para aire, establecidos en el D.S. N° 003-2017-MINAM. Asimismo, en el caso del $PM_{2.5}$ la concentración diaria más alta se dio el sábado 17 de agosto con 22.94 ug/m3 y en el caso del $PM_{10}$ la concentración diaria más alta se dio el miércoles 14 de agosto con 55.65 ug/m3.
 
--   El Índice de Calidad de Aire utilizado para determinar la calidad de aire en la zona de estudio muestra que durante los dias evaluados presentan las categorías de buenos en la mayoría de casos (a excepción del parámetro $PM_{2.5}$ y $PM_{10}$). Asimismo, para el parámetro $PM_{2.5}$ presenta la categoría de moderado en todos los días de monitoreo y respecto al parámetro $PM_{10}$ este presenta la mayoría de sus casos la categoría de bueno a excepción del día 14 de agosto. 
+-   Los contaminantes gaseosos $NO_2$, $O_3$, $SO_2$, $H_2S$ y CO no superaron sus respectivos ECA-aire. Asimismo, las mayores concentraciones de $NO_2$ se registraron el domingo 11 de agosto del 2024 con 36.42 ug/m3 y de $O_3$ el día viernes 09 de agosto con 48.56 ug/m3.
 
--   En cuanto a los parámetros meteorológicos se destaca la predominancia del viento suroeste (210°) y el valor medio de la velocidad del viento en `r a` m/s.
+-   El Índice de Calidad de Aire utilizado para determinar los estados de la calidad de aire en la zona de estudio muestra que durante los días de monitoreo los parámetros evaluados presentan la categoría de **“Bueno”** en la mayoría de los casos (a excepción de los parámetros $PM_{2.5}$  $PM_{10}$) . Asimismo, para el parámetro $PM_{2.5}$ presenta estado de calidad del aire **“Moderado”** en todos los días de monitoreo y respecto al parámetro $PM_{10}$ este presenta estado de calidad de aire **“Bueno”** en casi todos los días monitoreados, a excepción del día 14 de agosto con estado de calidad del aire **“Moderado”.**
+
+-   Respecto a la comparación con las Directrices de la Organización Mundial de la Salud (OMS) sobre la calidad del aire, los parámetros $PM_{2.5}$, $PM_{10}$ y $NO_2$ superan sus valores de referencia respectivos.
+
+-   En cuanto a los parámetros meteorológicos se destaca la predominancia del viento suroeste  (210°)y el valor medio de la velocidad del viento en `r a` m/s.
 
 # Referencias
 
