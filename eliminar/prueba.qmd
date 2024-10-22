@@ -1,0 +1,34 @@
+---
+title: "Tabla Interactiva con Filtros en Quarto"
+format: html
+---
+
+```{r}
+# Cargar las bibliotecas necesarias
+library(DT)
+library(dplyr)
+
+# Cargar el conjunto de datos airquality
+data <- airquality
+
+# Crear una lista desplegable para seleccionar el mes
+meses <- unique(data$Month)
+
+# Crear una función para filtrar los datos
+filter_data <- function(selected_month) {
+  filtered_data <- data %>% filter(Month == selected_month)
+  return(datatable(filtered_data))
+}
+
+# Mostrar la tabla con el mes seleccionado por defecto
+filter_data(meses[1])
+
+# Crear un input para seleccionar el mes
+input_month <- meses[1]
+
+# Filtrar y mostrar la tabla según el mes seleccionado
+filter_data(input_month)
+
+
+
+```

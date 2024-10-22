@@ -17,7 +17,7 @@ aqi_index <- function(df){
     min_pm10 = c(0, 55, 155, 255, 355, 425),
     max_pm10 = c(54, 154, 254, 354, 424, Inf),
     min_pm25 = c(0, 9.1, 35.5, 55.5, 125.5, 225.5),
-    max_pm25 = c(9, 35.4, 55.4, 125.4, 225.5, Inf),
+    max_pm25 = c(9, 35.4, 55.4, 125.4, 225.4, Inf),
     min_o3 = c(0, 0.055, 0.071, 0.086, 0.106, 0.201),
     max_o3 = c(0.054, 0.070, 0.085, 0.105, 0.200, Inf),
     min_no2 = c(0, 54, 101, 361, 650, 1250),
@@ -153,25 +153,25 @@ aqi_index <- function(df){
            "#8F3F97", "#7E0023")
   
   param2 <- c(co =  bquote(bold(CO)),
-              no2 =  bquote(bold(NO[2])),
-              o3 = bquote(bold(O[3])),
-              pm10 = bquote(bold(PM[10])),
-              pm25 = bquote(bold(PM[2.5])),
-              so2 = bquote(bold(SO[2])))
+               no2 =  bquote(bold(NO[2])),
+               o3 = bquote(bold(O[3])),
+               pm10 = bquote(bold(PM[10])),
+               pm25 = bquote(bold(PM[2.5])),
+               so2 = bquote(bold(SO[2])))
   
   rbind(pm__10, pm__25, o__3, no__2, so__2, co__0) %>% 
     mutate(aqi_ind = round(aqi_ind),
            fecha = as.Date(fecha, format = "%d-%B"),
-           fecha = format(fecha, format = "%d")) %>% 
-    ggplot(aes(y = tipo,x = factor(fecha), fill = category)) +
-    geom_tile(color = "white", lwd =1) +
+           fecha = format(fecha, format = "%d"),
+           fecha = factor(fecha, levels = unique(fecha))) %>% 
+  ggplot(aes(y = tipo,x = fecha, fill = category)) +
+    geom_tile(color = "white", lwd =1)+
     geom_text(aes(label = aqi_ind)) +
     scale_fill_manual(values = aqi) +
     scale_y_discrete(labels = param2) +
-    labs(x = "Dias evaluados", y = "",
-         title = "Índice de Calidad de Aire",
+    labs(x = "Dias monitoreados", y = "",
          fill = "Categoría") +
     theme_minimal()+
-    theme(legend.position = "top",
+    theme(legend.position = "bottom",
           plot.title = element_text(hjust = 0.5))
 }

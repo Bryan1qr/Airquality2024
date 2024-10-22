@@ -34,7 +34,7 @@ cruda <- function(meteo, gases, pm, fecha_inicio, fecha_fin, estacion, tipo){
       format = "%Y-%m-%d %H:%M")) %>% 
     select(c(date, 3, 4,7)) %>% 
     rename_at(vars(names(.)),~ c(
-      "date", "hr", "pm2.5", "pm10")) %>% 
+      "date", "hr", "pm25", "pm10")) %>% 
     filter(date %in% seq(
       as.POSIXct(paste(fecha_inicio, "00:00:00")),
       as.POSIXct(paste(fecha_fin, "23:00:00")),
@@ -42,16 +42,10 @@ cruda <- function(meteo, gases, pm, fecha_inicio, fecha_fin, estacion, tipo){
     mutate_if(is.character, as.numeric)
   
   df <- cbind(p3, m1[,-1], g2[, -1])
-  df <- df %>% 
-    rename_at(
-      vars(names(.)),
-      ~ c("Fecha", "HR (%)", "PM2.5 (ug/m3)", 
-          "PM10 (ug/m3)", "Pres (mbar)",
-          "precip (mm)", "Temp (°C)", "wd (°)",
-          "ws (m/s)", "rad (kw/m2)", "no (ppb)",
-          "no2 (ppb)", "so2 (ppb)", "h2s (ppb)",
-          "co (ppb)", "o3 (ppb)"))
   
+  names(df) <- c("fecha", "hr(%)", "pm2.5 (ug/m3)", "pm10 (ug/m3)", "pres (mbar)", "pp (mm)",
+                 "temp (°C)", "wd (°)", "ws (m/s)", "rad (kw/m2)", "no (ppb)", "no2 (ppb)",
+                 "so2 (ppb)", "h2s (ppb)", "co (ppb)", "o3 (ppb)")
   if (tipo == "save") {
     openxlsx::write.xlsx(
       df, paste0(estacion, ".xlsx"))

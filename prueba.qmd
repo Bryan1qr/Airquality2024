@@ -1,0 +1,161 @@
+---
+title: "Calidad de aire julio - 2024"
+subtitle: "Distrito de Alto de la Alianza"
+date: "2024-08-01"
+author: "Gobierno Regional de Tacna"
+bibliography: referencias.bib
+csl: apa.csl
+header-includes:
+  - \usepackage{colortbl}
+  - \usepackage[table]{xcolor}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+  - \usepackage{pdflscape}
+  - \usepackage{longtable}
+lang: es
+cap-location: top
+fig-align: center
+execute:
+    warning: false
+    message: false
+    echo: false
+format:
+  pdf:
+    number-sections: true
+    papersize: a4
+    geometry:
+      - top=2mm
+      - left=3mm
+      - right=3mm
+      - bottom=3mm
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+library(openair)
+library(openxlsx)
+library(zoo)
+library(ggthemes)
+library(ggforce)
+library(patchwork)
+library(ggrepel)
+library(glue)
+library(kableExtra)
+library(gt)
+source("Scripts/ECA.R")
+
+df <- ECA(meteo = "input/CR1000_JULIO_2024.csv",
+          gases = "input/gases_odria_agosto.csv",
+          pm = "input/1405A227561402_2024-08-01_09-11-26.csv",
+          fecha_inicio = "2024-07-17",
+          fecha_fin = "2024-07-31",
+          estacion = "vigil",
+          tipo = "lista")
+
+source("Scripts/data_cruda.R")
+cruda2 <- cruda(meteo = "input/CR1000_JULIO_2024.csv",
+          gases = "input/gases_odria_agosto.csv",
+          pm = "input/1405A227561402_2024-08-01_09-11-26.csv",
+          fecha_inicio = "2024-07-17",
+          fecha_fin = "2024-07-31",
+          estacion = "vigil_cruda",
+              tipo = "save")
+
+meses <- c("January" = "enero",
+           "February" = "febrero",
+           "March" = "marzo",
+             "April" = "abril",
+           "May" = "mayo",
+           "June" = "junio",
+             "July" = "julio",
+           "August" = "agosto",
+           "September" = "septiembre",
+             "October" = "octubre",
+           "November" = "noviembre",
+           "December" = "diciembre")
+
+fech <- meses[[format(min(df$df$date),
+                      format = "%B")]]
+
+cod <- "EMCA - 02"
+distrito <- "Alto de la Alianza"
+lugar <- 'el Instituto de Educación Superior Público "Francisco  de Paula Gonzales Vigil"'
+
+```
+
+# Presentación
+
+El presente reporte muestra los resultados del monitoreo de la calidad de aire, el cual fue realizado con la estación de monitoreo de calidad de aire del Gobierno Regional de Tacna en un espacio proporcionado por `r lugar` en el distrito de `r distrito` durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))`. Los parámetros de calidad de aire evaluados fueron dióxido de azufre, material particulado con diámetro menor a 2.5 micras, material particulado con diámetro menor a 10 micras, monóxido de carbono, dióxido de nitrógeno, ozono troposférico y sulfuro de hidrógeno. Así también, se presentan los datos meteorológicos generados por la estación de monitoreo. Como valores de referencia de calidad de aire se tomaron seis parámetros comparables con los Estándares de Calidad Ambiental (en adelante ECA) para aire del Perú [@aireminam2017] y también se utilizaron los niveles de referencia sugeridos por la Organización Mundial de la Salud [@oms2021]. Como principales paquetes computaciones de R que llevaron a cabo el procesamiento de la información se tiene a zoo [@zoo2005], tidyverse [@tidyverse2019] y openair [@openair2012].
+
+## Índice de Calidad de Aire
+
+El índice de Calidad de Aire (AQI por sus siglas en inglés) muestra que, en general la zona monitoreada durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` presenta valores categorizados como "buenos" en los parámetros $NO_2$, $O_3$, $SO_2$, y $CO$ durante todos los dias de medición. En el caso del $PM_{2.5}$ se observa que todos los dias monitoreados se encuentran en "Moderado" que puede no ser favorable para personas sensibles a una exposición prolongada de este parámetro en la zona de evaluación. Finalmente los valores de $PM_{10}$ se encuentran dentro de la categoría "bueno" en casi todos los días de medición debido que el día 25 se encontraba en un nivel "moderado".
+
+```{r fig.cap = glue(paste("Índice de Calidad de Aire -", format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech}")))}
+#| fig-height: 3.6
+#| fig-width: 7
+source("Scripts/AQI.R")
+
+aqi_index(df$eca)
+```
+
+# Comparación con el Estándar de Calidad de aire
+
+### Datos diarios de calidad de aire
+
+Por otro lado los valores diarios registrados de los parámetros $SO_2$, $H_{2}S$ y $CO$ se muestran en la siguiente tabla:
+
+```{r fig.pos="H"}
+#| tbl-cap: "Comparación con el ECA de los datos diarios"
+
+parametros <- c(
+  pm10 = "PM10",
+  pm25 = "PM2.5",
+  no2 = "NO2",
+  so2 = 'SO2',
+  h2s = "H2S",
+  co_1 = "CO (8h)",
+  co = "CO (1h)",
+  o3 = "O3")
+
+oms <- data.frame(
+  Parámetros = c(
+    "PM10", "PM2.5", "O3","NO2",
+    "SO2", "CO (1h)","CO (8h)"),
+  OMS  = c(
+    15, 45, 100, 25, 40, 35000,10000
+  ))
+
+df$eca %>% 
+  mutate(fecha = as.Date(fecha, format = "%d-%B"),
+         fecha = format(fecha, format = "%d-%m")) %>% 
+  mutate_if(is.numeric, round, digits = 1) %>% 
+  pivot_longer(
+    cols = -fecha,
+    names_to = "Parámetros",
+    values_to = "val") %>% 
+  pivot_wider(names_from = fecha, values_from = val) %>%
+  mutate(Parámetros = parametros,
+         ECA = c(100, 50, 200, 250,
+                 150, 30000, 10000, 100)) %>% 
+  full_join(oms) %>% 
+  slice(4:7) %>%
+  kable("latex", booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped", "hold_position", "full_width"), 
+                position = "center",
+                font_size = 8) %>%  # Ajusta el tamaño de la fuente
+  column_spec(0, width = "0.5cm") %>%  # Ajusta el ancho de la columna
+  row_spec(0, bold = FALSE)
+```
+
+Lo visto en la figura 3 y la tabla 3 muestra que los valores diarios medidos no superan el Estándar de Calidad Ambiental de Aire en ningún día de medición. Sin embargo, al realizar la comparación con el Estándar de Calidad de Aire de la Organización Mundial de la Salud (OMS), los parámetros $PM_{2.5}$, $PM_{10}$ y $NO_2$ superan su estándar de calidad en varios dias de medición.
+
+### Datos horarios de calidad de aire
+
+A continuación se muestran los datos por hora de los parámetros comparables con los Estándares de Calidad de Aire del Perú (ECA) y los Umbrales de Calidad de Aire Global de la Organización Mundial de la Salud (OMS). El gráfico muestra que los parámetros $NO_2$, $PM_{2.5}$ y $PM_{10}$ superan los umbrales de ambos estándares en algunos momentos de medición, en el caso de los parámetros $O_3$, $SO_2$, $H_{2}S$ y $CO$ no se llega a superar ninguno de los estándares en ningún momento del periodo de monitoreo. Así también, para una comprensión semanal de los datos horarios ver la figura 5.
+
+# Referencias
+::: {#refs}
+:::
