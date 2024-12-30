@@ -137,7 +137,7 @@ Una manera muy útil de medir la calidad de aire de diferentes zonas del país e
 Durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` se realizó el monitoreo de calidad del aire, en `r lugar` en el distrito de `r distrito`, utilizando la Estación Móvil de Monitoreo de Calidad de aire del Gobierno Regional de Tacna.
 
 ```{r fig.cap=glue("Mapa de Ubicación de la estación {cod}")}
-knitr::include_graphics("mapas/output_3.png", dpi = 360)
+knitr::include_graphics("mapas/output_1.png", dpi = 360)
 ```
 
 # Parámetros de calidad de aire
@@ -269,7 +269,7 @@ knitr::include_graphics("polares/polares_unanue.png", dpi = 450)
 
 <!-- Modificableeeeeeeee -->
 
-El índice de Calidad de Aire (AQI por sus siglas en inglés) muestra los estados de la calidad del aire, en general la zona monitoreada durante el 17 al 31 de julio del 2024 presenta estados de calidad de aire **“Bueno”** en los parámetros $NO_2$, $O_3$, $SO_2$, y $CO$, durante todos los días de medición. En el caso del $PM_{2.5}$ se observa que presenta todos los días estado de calidad del aire **“Moderado”**, que puede no ser favorable para personas sensibles a una exposición prolongada de este parámetro en la zona de evaluación. Finalmente, los valores de $PM_{10}$ presenta estado de calidad de aire **“Bueno”** en casi todos los días monitoreados, a excepción del viernes 28 con estado de calidad del aire **“Moderado”.**
+El índice de Calidad de Aire (AQI por sus siglas en inglés) muestra los estados de la calidad del aire, en general la zona monitoreada durante el `r glue(format(min(df$df$date), format = "%d"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` presenta estados de calidad de aire **“Bueno”** en los parámetros $NO_2$, $O_3$, $SO_2$, y $CO$, durante todos los días de medición. En el caso del $PM_{2.5}$ se observa que presenta todos los días estado de calidad del aire **“Moderado”**, que puede no ser favorable para personas sensibles a una exposición prolongada de este parámetro en la zona de evaluación. Finalmente, los valores de $PM_{10}$ presenta estado de calidad de aire **“Bueno”** en casi todos los días monitoreados, a excepción del viernes 28 con estado de calidad del aire **“Moderado”.**
 
 ```{r fig.cap = glue(paste("Índice de Calidad de Aire -", format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech}")))}
 #| fig-height: 3.6

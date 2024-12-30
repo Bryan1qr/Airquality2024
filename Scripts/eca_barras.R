@@ -17,8 +17,7 @@ barras_eca <- function(lista, coloreo, ruta){
   
   db <- lista$eca %>% 
     mutate(fecha = as.Date(fecha, "%d-%B"),
-           fecha = format(fecha, format = "%d"),
-           fecha = factor(fecha, levels = unique(fecha)))
+           fecha = format(fecha, format = "%d"))
   
   
   db1 <- db %>% ggplot(
