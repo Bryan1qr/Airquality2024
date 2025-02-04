@@ -77,8 +77,7 @@ ECA <- function(meteo, gases, pm, fecha_inicio, fecha_fin, estacion, tipo){
   
   df <- cbind(p3, m1[,-1], g2[, -1])
   eca <- df %>% 
-    mutate(fecha = format(date, "%d-%B"),
-           fecha2 = as.Date(date)) %>% 
+    mutate(fecha = as.Date(date)) %>% 
     group_by(fecha) %>% 
     summarise(
       pm25 = mean(pm25, na.rm = T),

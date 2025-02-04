@@ -156,12 +156,12 @@ Con los datos obtenidos de la estación de monitoreo de la calidad del aire del 
 #| fig-width: 8
 timePlot(
   selectByDate(df$df),
-  pollutant = c("pm10","pm25", "co_1",
+  pollutant = c("pm10","pm25", "co_8h",
                 "no2", "o3", "so2", "h2s"),
          y.relation = "free",plot.type = "h",
          main = "Parámetros de calidad de aire (ug/m3)",
   name.pol = c("pm10", "pm25", "co", "no2",
-               "o3", "so2", "h2s"),
+               "o3_8h", "so2", "h2s"),
          key = FALSE, ylab = "Parámetros")
 ```
 
@@ -193,9 +193,9 @@ parametros <- c(
   no2 = "NO2",
   so2 = 'SO2',
   h2s = "H2S",
-  co_1 = "CO (8h)",
-  co = "CO (1h)",
-  o3 = "O3")
+  co_8h = "CO (8h)",
+  co_8h = "CO (1h)",
+  o3_8h = "O3")
 
 oms <- data.frame(
   Parámetros = c(
@@ -333,7 +333,7 @@ timePlot(
 
 # Conclusiones
 
--   Las concentraciones diarias de material particulado en la zona evaluada cumple con los Estándar de Calidad Ambiental para aire, establecidos en el D.S. N° 003-2017-MINAM. Asimismo, en el caso del $PM_{2.5}$ la concentración diaria más alta se dio el lunes 26 de agosto con 25.95 ug/m3 y en el caso del $PM_{10}$ la concentración diaria más alta se dio también el 26 de agosto con 61.85 ug/m3.
+-   Las concentraciones diarias de material particulado en la zona evaluada cumple con los Estándar de Calidad Ambiental para aire, establecidos en el D.S. N° 003-2017-MINAM. Asimismo, en el caso del $PM_{2.5}$ la concentración diaria más alta se dio el viernes 4 de octubre con 19.29 ug/m3 y en el caso del $PM_{10}$ la concentración diaria más alta se dio también el 4 de octubre con 56.28 ug/m3.
 
 -   Los contaminantes gaseosos $NO_2$, $O_3$, $SO_2$, $H_2S$ y CO no superaron sus respectivos ECA-aire. Asimismo, la mayor concentración de $NO_2$ se registró el viernes 04 de octubre del 2024 con 34.42 ug/m3 y de $O_3$ el domingo 28 de setiembre con 55.75 ug/m3.
 

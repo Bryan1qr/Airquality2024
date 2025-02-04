@@ -151,8 +151,8 @@ Con los datos obtenidos de la estación de monitoreo de la calidad del aire del 
 #| fig-width: 8
 timePlot(
   selectByDate(df$df),
-  pollutant = c("pm10","pm25", "co_1",
-                "no2", "o3", "so2", "h2s"),
+  pollutant = c("pm10","pm25", "co_8h",
+                "no2", "o3_8h", "so2", "h2s"),
          y.relation = "free",plot.type = "h",
          main = "Parámetros de calidad de aire (ug/m3)",
   name.pol = c("pm10", "pm25", "co", "no2",
@@ -188,9 +188,9 @@ parametros <- c(
   no2 = "NO2",
   so2 = 'SO2',
   h2s = "H2S",
-  co_1 = "CO (8h)",
+  co_8h = "CO (8h)",
   co = "CO (1h)",
-  o3 = "O3")
+  o3_8h = "O3")
 
 oms <- data.frame(
   Parámetros = c(
@@ -228,7 +228,7 @@ Sin embargo, al realizar la comparación con las Directrices sobre la calidad de
 
 ### Concentraciones horarias de los parámetros monitoreados
 
-A continuación, se muestran las concentraciones horarias de los parámetros comparados de forma referencial con los Estándares de Calidad Ambiental (ECA) para aire del Perú y los niveles de la Directriz de la Organización Mundial de la Salud (OMS). El gráfico muestra que los parámetros $PM_{10}$, $PM_{2.5}$ y $NO_2$ ssuperan en algunas horas de monitoreo, ambos umbrales de referencia, en el caso de los parámetros $O_3$, $SO_2$, $H_{2}S$ y $CO$ no se llega a superar estos umbrales en ningún momento del periodo de monitoreo. Así también, de forma complementaria en la figura 5 para una mejor comprensión, se muestra el comportamiento semanal de cada uno de los parámetros monitoreados.
+A continuación, se muestran las concentraciones horarias de los parámetros comparados de forma referencial con los Estándares de Calidad Ambiental (ECA) para aire del Perú y los niveles de la Directriz de la Organización Mundial de la Salud (OMS). El gráfico muestra que los parámetros $PM_{10}$, $PM_{2.5}$ y $NO_2$ superan en algunas horas de monitoreo, ambos umbrales de referencia, en el caso de los parámetros $O_3$, $SO_2$, $H_{2}S$ y $CO$ no se llega a superar estos umbrales en ningún momento del periodo de monitoreo. Así también, de forma complementaria en la figura 5 para una mejor comprensión, se muestra el comportamiento semanal de cada uno de los parámetros monitoreados.
 
 ```{r fig.cap = glue(paste("Comparación referencial de concentraciones horarias con el Estándar de Calidad Ambiental de Aire del ", format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech}")))}
 #| fig-height: 13
@@ -266,7 +266,7 @@ knitr::include_graphics("polares/polares_chavez.png", dpi = 450)
 
 ## Índice de Calidad de Aire
 
-El índice de Calidad de Aire (AQI por sus siglas en inglés) muestra los estados de la calidad del aire, en general la zona monitoreada durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` presenta estados de calidad de aire **“Bueno”** en los parámetros $NO_2$, $O_3$, $SO_2$, y $CO$, durante todos los días de medición. En el caso del $PM_{2.5}$ se observa que ddel 15 al 20 y del 22 al 24 de setiembre presenta estado de calidad del aire **“Moderado”**, que puede no ser favorable para personas sensibles a una exposición prolongada de este parámetro en la zona de evaluación. Finalmente, los valores de $PM_{10}$ presenta estado de calidad del aire **“Bueno”** en casi todos los días monitoreados.
+El índice de Calidad de Aire (AQI por sus siglas en inglés) muestra los estados de la calidad del aire, en general la zona monitoreada durante el `r glue(format(min(df$df$date), format = "%d de {fech} del %Y"))` al `r glue(format(max(df$df$date), format = "%d de {fech} del %Y"))` presenta estados de calidad de aire **“Bueno”** en los parámetros $NO_2$, $O_3$, $SO_2$, y $CO$, durante todos los días de medición. En el caso del $PM_{2.5}$ se observa que del 15 al 20 y del 22 al 24 de setiembre presenta estado de calidad del aire **“Moderado”**, que puede no ser favorable para personas sensibles a una exposición prolongada de este parámetro en la zona de evaluación. Finalmente, los valores de $PM_{10}$ presenta estado de calidad del aire **“Bueno”** en casi todos los días monitoreados.
 
 ```{r fig.cap = glue(paste("Índice de Calidad de Aire -", format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech}")))}
 #| fig-height: 3.6

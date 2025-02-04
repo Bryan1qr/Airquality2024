@@ -5,10 +5,10 @@ aqi_index <- function(df){
   }
   
   df <- df %>% 
-    mutate(o3 = factor_usepa(o3, 47.99820)/1000,
+    mutate(o3_8h = factor_usepa(o3_8h, 47.99820)/1000,
            no2 = factor_usepa(no2, 46.00552),
            so2 = factor_usepa(so2, 64.06480),
-           co_1 = factor_usepa(co_1, 28.01055)/1000)
+           co_8h = factor_usepa(co_8h, 28.01055)/1000)
     
   
   aqi_tabla <- tibble(category = c(
@@ -35,10 +35,10 @@ aqi_index <- function(df){
   
   pm10 <- truncc(df$pm10, 0)
   pm25 <- truncc(df$pm25, 1)
-  o3 <- truncc(df$o3, 3)
+  o3 <- truncc(df$o3_8h, 3)
   no2 <- truncc(df$no2, 0)
   so2 <- truncc(df$so2, 0)
-  co <- truncc(df$co_1, 1)
+  co <- truncc(df$co_8h, 1)
   
   # pm10
   tab1 <- c()

@@ -106,7 +106,7 @@ gg_grafico <- function(lista, estacion, file_name, color_linea){
     temita + theme(legend.position = "none")
   
   e <- df1 %>% ggplot(
-    aes(x = date, y = o3)) +
+    aes(x = date, y = o3_8h)) +
     geom_line(color = "red") +
     geom_hline(aes(color = "OMS", yintercept = 100),lwd=1, lty = 1) +
     geom_hline(aes(color = "ECA (8h)", yintercept = 100),lwd=1, lty = 3)+
@@ -128,7 +128,7 @@ gg_grafico <- function(lista, estacion, file_name, color_linea){
   f <- df1 %>% ggplot(
     aes(x = date)) +
     geom_line(aes(y = co, color = "co")) +
-    geom_line(aes(y = co_1, color = "co_1")) +
+    geom_line(aes(y = co_8h, color = "co_1")) +
     geom_hline(aes(yintercept = 10000,
                    color="ECA(8h)"),lwd=1, lty = 3) +
     geom_hline(aes(yintercept = 30000, color = "ECA"),lwd=1, lty = 2) +

@@ -1,10 +1,10 @@
 # Gráfico con facetas -----------------------------------------------------
 faceta <- function(lista){
   parametros <- c(
-    co_1 = "CO",
+    co_8h = "CO",
     h2s = "H[2]*S",
     no2 = "NO[2]",
-    o3 = "O[3]",
+    o3_8h = "O[3]",
     pm10 = "PM[10]",
     pm25 = "PM[2.5]",
     so2 = 'SO[2]')
@@ -34,7 +34,7 @@ faceta <- function(lista){
            dia2 = fct_relevel(
              dia2, "Lunes","Martes", "Miércoles",
              "Jueves", "Viernes", "Sábado", "Domingo")) %>%
-    select(-c(hr, pres, pp, temp, wd, ws, rad, no, co)) %>%
+    select(-c(hr, pres, pp, temp, wd, ws, rad, no,nox, co, o3)) %>%
     pivot_longer(values_to = "val", names_to = "param", cols = 2:8) %>% 
     ggplot(aes(x = date2, y = val, group = dia1)) +
     geom_smooth(aes(fill = dia1), alpha = 0.25, color = "gray",

@@ -16,9 +16,9 @@ barras_eca <- function(lista, coloreo, ruta){
     legend.background = element_blank())
   
   db <- lista$eca %>% 
-    mutate(fecha = as.Date(fecha, "%d-%B"),
-           fecha = format(fecha, format = "%d"))
+    mutate(fecha = format(fecha, format = "%d"))
   
+  orden <- db$fecha
   
   db1 <- db %>% ggplot(
     aes(x = fecha, y = pm25)) +
@@ -35,6 +35,7 @@ barras_eca <- function(lista, coloreo, ruta){
          color = "Estándar") + 
     scale_color_manual(values = c("ECA" = "blue",
                                   "OMS" = "green")) +
+    scale_x_discrete(limits = orden) +
     temita
   
   
@@ -55,6 +56,7 @@ barras_eca <- function(lista, coloreo, ruta){
          color = "Estándar") +
     scale_color_manual(values = c("ECA" = "blue",
                                   "OMS" = "green")) +
+    scale_x_discrete(limits = orden) +
     temita
   
   
@@ -75,18 +77,19 @@ barras_eca <- function(lista, coloreo, ruta){
          color = "Estándar") +
     scale_color_manual(values = c("ECA" = "blue",
                                   "OMS" = "green")) +
+    scale_x_discrete(limits = orden) +
     temita
   
   db5 <- db %>% ggplot(
-    aes(x = fecha, y = o3)) +
+    aes(x = fecha, y = o3_8h)) +
     geom_bar(fill = coloreo, stat = "identity") +
     geom_hline(aes(yintercept = 100,
                    color="OMS"),lwd=1, lty = 1) +
     geom_hline(aes(yintercept = 100,
                    color="ECA"),lwd=1, lty = 2) +
-    geom_text(size = 3.5,aes(label = round(o3,2)),
+    geom_text(size = 3.5,aes(label = round(o3_8h,2)),
               angle = 90, color = "black",
-              nudge_y = max(db$o3, na.rm = T)/6, fontface = "bold") +
+              nudge_y = max(db$o3_8h, na.rm = T)/6, fontface = "bold") +
     labs(x = "",
          y = expression("O"[3]*" (ug/m"^{3}*")"),
          title = "Ozono troposférico",
@@ -94,6 +97,7 @@ barras_eca <- function(lista, coloreo, ruta){
          color = "Estándar") +
     scale_color_manual(values = c("ECA" = "blue",
                                   "OMS" = "green")) +
+    scale_x_discrete(limits = orden) +
     temita
   
   ((db1 | db2)/(db3 | db5)) + plot_layout(guides = 'collect') & 
