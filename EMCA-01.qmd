@@ -1,7 +1,7 @@
 ---
-title: "Primer Informe de Calidad de Aire - 2024"
+title: "Séptimo Informe de Calidad de Aire - 2025"
 subtitle: "Distrito de Tacna"
-date: "2024-07-01"
+date: "2025-02-02"
 author: "Gobierno Regional de Tacna"
 bibliography: referencias.bib
 csl: apa.csl
@@ -43,24 +43,24 @@ library(patchwork)
 library(ggrepel)
 library(glue)
 library(kableExtra)
-source("Scripts/ECA.R")
+source("Scripts/ECA_mejorado.R")
 
-df <- ECA(meteo = "input/CR1000_JULIO_2024.csv",
-          gases = "input/gases_odria_agosto.csv",
-          pm = "input/pm_junio.csv",
-          fecha_inicio = "2024-06-21",
-          fecha_fin = "2024-06-30",
-          estacion = "unanue",
-          tipo = "lista")
+df <- ECA(meteo = "input/meteodiciembre2024.csv",
+    gases = "input/eca_mod_2024diciembre.csv",
+    pm = "input/pm_diciembre2024.csv",
+    fecha_inicio = "2024-12-01 00:00:00",
+    fecha_fin = "2025-12-31 23:00",
+    estacion = "Unanue",
+    tipo = "lista")
 
-source("Scripts/data_cruda.R")
-cruda2 <- cruda(meteo = "input/CR1000_JULIO_2024.csv",
-          gases = "input/gases_odria_agosto.csv",
-          pm = "input/pm_junio.csv",
-          fecha_inicio = "2024-06-21",
-          fecha_fin = "2024-06-30",
-          estacion = "unanue",
-              tipo = "save")
+source("Scripts/data_cruda_mejorada.R")
+cruda2 <- cruda(meteo = "input/meteodiciembre2024.csv",
+    gases = "input/eca_mod_2024diciembre.csv",
+    pm = "input/pm_diciembre2024.csv",
+    fecha_inicio = "2024-12-01 00:00:00",
+    fecha_fin = "2025-12-31 23:00",
+    estacion = "Unanue",
+    tipo = "save")
 
 meses <- c("January" = "enero",
            "February" = "febrero",
@@ -77,7 +77,10 @@ meses <- c("January" = "enero",
 
 fech <- meses[[format(min(df$df$date),
                       format = "%B")]]
-cod <- "EMCA - 01"
+
+fech2 <- meses[[format(max(df$df$date),
+                      format = "%B")]]
+cod <- "UNANUE"
 distrito <- "Tacna"
 
 lugar <- 'Prolongación Hipólito Unanue "Ex sede del Gobierno Regional de Tacna"'
