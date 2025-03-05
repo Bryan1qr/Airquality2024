@@ -48,18 +48,18 @@ source("Scripts/ECA_mejorado.R")
 
 df <- ECA(meteo = "input/CR1000_FEBRERO_DM_2025.csv",
           gases = "input/eca_2025_febrero.csv",
-          pm = "input/pm_DM_HOTELES2025.csv",
+          pm = "input/pm_DM_HOTELES2025_acumulado.csv",
           fecha_inicio = "2025-02-20 00:00",
-          fecha_fin = "2025-02-26 23:00",
+          fecha_fin = "2025-02-27 23:00",
           estacion = "DM HOTELES",
           tipo = "lista")
 
 source("Scripts/data_cruda.R")
 cruda2 <- cruda(meteo = "input/CR1000_FEBRERO_DM_2025.csv",
           gases = "input/eca_2025_febrero.csv",
-          pm = "input/pm_DM_HOTELES2025.csv",
+          pm = "input/pm_DM_HOTELES2025_acumulado.csv",
           fecha_inicio = "2025-02-20 00:00",
-          fecha_fin = "2025-02-26 23:00",
+          fecha_fin = "2025-02-27 23:00",
           estacion = "DM HOTELES",
               tipo = "save")
 
@@ -227,13 +227,13 @@ df$eca %>%
   row_spec(0, bold = FALSE)
 ```
 
-Lo visto en la figura 3 y la tabla 3 muestra que las concentraciones diarias no superan el Estándar de Calidad Ambiental de Aire en ningún día de monitoreo. En el caso del $PM_{2.5}$ la concentración diaria más alta se dio el miércoles 26 de febrero con una concentración de 19.64 ug/m3 y en el caso del $PM_{10}$ la concentración diaria más alta también se dio el día 26 de febrero con 38.21 ug/m3.
+Lo visto en la figura 3 y la tabla 3 muestra que las concentraciones diarias no superan el Estándar de Calidad Ambiental de Aire en ningún día de monitoreo. En el caso del $PM_{2.5}$ la concentración diaria más alta se dio el jueves 27 de febrero con una concentración de 21.7 ug/m3 y en el caso del $PM_{10}$ la concentración diaria más alta también se dio el día 26 de febrero con 38.21 ug/m3.
 
 Sin embargo, al realizar la comparación con las Directrices sobre la calidad de aire de la Organización Mundial de la Salud (OMS), el parámetro $PM_{2.5}$, supera estos valores en varios días de monitoreo.
 
 ### Concentraciones horarias de los parámetros monitoreados
 
-A continuación, se muestran las concentraciones horarias de los parámetros comparados de forma referencial con los Estándares de Calidad Ambiental (ECA) para aire del Perú y los niveles de la Directriz de la Organización Mundial de la Salud (OMS). El gráfico muestra que los parámetros $PM_{2.5}$, $PM_{10}$ y $NO_2$ superan en algunas horas de monitoreo, ambos umbrales de referencia, en el caso de los parámetros $O_3$, $SO_2$, $H_2S$ y $CO$ no se llega a superar estos umbrales en ningún momento del periodo de monitoreo. Así también, de forma complementaria en la figura 5 para una mejor comprensión, se muestra el comportamiento semanal de cada uno de los parámetros monitoreados. 
+A continuación, se muestran las concentraciones horarias de los parámetros comparados de forma referencial con los Estándares de Calidad Ambiental (ECA) para aire del Perú y los niveles de la Directriz de la Organización Mundial de la Salud (OMS). El gráfico muestra que los parámetros $PM_{2.5}$, $PM_{10}$ y $NO_2$ superan en algunas horas de monitoreo los niveles de la directriz de la OMS, en el caso de los parámetros $O_3$, $SO_2$, $H_2S$ y $CO$ no se llega a superar estos umbrales en ningún momento del periodo de monitoreo. Así también, de forma complementaria en la figura 5 para una mejor comprensión, se muestra el comportamiento semanal de cada uno de los parámetros monitoreados. 
 
 ```{r fig.cap = glue(paste("Comparación referencial de concentraciones horarias con el Estándar de Calidad Ambiental de Aire del ", format(min(df$df$date), format = "%d de {fech}"), "al", format(max(df$df$date), format = "%d de {fech2}")))}
 #| fig-height: 12
@@ -254,7 +254,7 @@ faceta(df)
 
 ### Gráficos polares
 
-Son gráficos que presentan una relación entre las concentraciones horarias de los contaminantes y el comportamiento de los vientos. La dirección del viento se muestra en el plano cartesiano, la velocidad del viento en las circunferencias, la cual aumenta a medida que se aleja del origen, y la concentración en la paleta de colores. En la figura 6 se aprecia la representación polar de 4 parámetros de calidad de aire de interés $PM_{10}$, $PM_{2.5}$, $NO_2$ y $O_3$. En el caso del parámetro $PM_{10}$, esta presenta mayores concentraciones con velocidad de viento mayores a 1.5 m/s los cuales provienen principalmente de dirección suroeste, en el caso del $PM_{2.5}$ las mayores concentraciones también se dan a menores niveles de velocidad del viento, y en mayor medida de dirección suroeste. Así mismo, según el gráfico, las mayores concentraciones de $NO_2$ se presentan a velocidades de viento menores a 2 m/s, principalmente de dirección suroeste. Las mayores concentraciones de $O_3$ se presentan con valores de velocidad de viento mayores a 2 m/s y provenientes con mayor predominancia de dirección suroeste, oeste y también de dirección noroeste.
+Son gráficos que presentan una relación entre las concentraciones horarias de los contaminantes y el comportamiento de los vientos. La dirección del viento se muestra en el plano cartesiano, la velocidad del viento en las circunferencias, la cual aumenta a medida que se aleja del origen, y la concentración en la paleta de colores. En la figura 6 se aprecia la representación polar de 4 parámetros de calidad de aire de interés $PM_{10}$, $PM_{2.5}$, $NO_2$ y $O_3$. En el caso del parámetro $PM_{10}$, esta presenta mayores concentraciones con velocidad de viento mayores a 1.5 m/s los cuales provienen principalmente de dirección sur, en el caso del $PM_{2.5}$ las mayores concentraciones también se dan a menores niveles de velocidad del viento, y en mayor medida de dirección suroeste. Así mismo, según el gráfico, las mayores concentraciones de $NO_2$ se presentan a velocidades de viento menores a 2 m/s, principalmente de dirección suroeste. Las mayores concentraciones de $O_3$ se presentan con valores de velocidad de viento mayores a 2 m/s y provenientes con mayor predominancia de dirección suroeste, oeste y también de dirección noroeste.
 
 ```{r}
 #| include: false
@@ -302,7 +302,7 @@ nn$data %>%
        y = "Frecuencia (%)")
 ```
 
-Así también se presenta el gráfico de rosa de viento donde se evidencia que el promedio de velocidades es de `r a` m/s. De acuerdo con los rangos propuestos por la OMM (2023), los rangos de velocidades de viento en este periodo de monitoreo, se encuentran en las categorías de "ventolina", “brisa muy débil”, “brisa débil” y “brisa moderada”.
+Así también se presenta el gráfico de rosa de viento donde se evidencia que el promedio de velocidades es de `r a` m/s. De acuerdo con los rangos propuestos por la OMM (2023), los rangos de velocidades de viento en este periodo de monitoreo, se encuentran en las categorías de "ventolina", “brisa muy débil” y “brisa débil”.
 
 ```{r}
 #| fig-cap: "Rosa de vientos"
@@ -331,11 +331,11 @@ timePlot(
 
 # Conclusiones
 
--   Las concentraciones diarias de material particulado en la zona evaluada cumplen con los Estándares de Calidad Ambiental para aire, establecidos en el D.S. N° 003-2017-MINAM. Asimismo, en el caso del $PM_{2.5}$ la concentración diaria más alta se dio el miércoles 26 de febrero con 19.64 ug/m3 y en el caso del $PM_{10}$ la concentración diaria más alta se dio también el 26 de febrero con 38.21 ug/m3.
+-   Las concentraciones diarias de material particulado en la zona evaluada cumplen con los Estándares de Calidad Ambiental para aire, establecidos en el D.S. N° 003-2017-MINAM. Asimismo, en el caso del $PM_{2.5}$ la concentración diaria más alta se dio el jueves 27 de febrero con 21.7 ug/m3 y en el caso del $PM_{10}$ la concentración diaria más alta se dio también el 26 de febrero con 38.21 ug/m3.
 
--   Los contaminantes gaseosos $NO_2$, $O_3$, $SO_2$, $H_2S$ y CO no superaron sus respectivos ECA-aire. Asimismo, la mayor concentración de $NO_2$ se registró el jueves 20 de febrero del 2025 con 20.42 ug/m3 y de $O_3$ el sábado 22 de febrero con 37.1 ug/m3.
+-   Los contaminantes gaseosos $NO_2$, $O_3$, $SO_2$, $H_2S$ y CO no superaron sus respectivos ECA-aire. Asimismo, la mayor concentración de $NO_2$ se registró el sabado 22 de febrero del 2025 con 20.49 ug/m3 y de $O_3$ el sábado 22 de febrero con 37.1 ug/m3.
 
--   El Índice de Calidad de Aire utilizado para determinar los estados de la calidad de aire en la zona de estudio muestra que durante los días de monitoreo los parámetros evaluados presentan la categoría de “Bueno” en la mayoría de los casos (a excepción del parámetro $PM_{2.5}$). El parámetro $PM_{2.5}$ del 20 de febrero al 26 de febrero, presenta estado de calidad del aire  **“Moderado”**.
+-   El Índice de Calidad de Aire utilizado para determinar los estados de la calidad de aire en la zona de estudio muestra que durante los días de monitoreo los parámetros evaluados presentan la categoría de “Bueno” en la mayoría de los casos (a excepción del parámetro $PM_{2.5}$). El parámetro $PM_{2.5}$ del 20 de febrero al 27 de febrero, presenta estado de calidad del aire  **“Moderado”**.
 
 -   Respecto a la comparación con las Directrices de la Organización Mundial de la Salud (OMS) sobre la calidad del aire, el parámetro $PM_{2.5}$, supera sus valores de referencia en algunos días de monitoreo. 
 

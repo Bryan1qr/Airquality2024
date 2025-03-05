@@ -9,9 +9,9 @@ source("Scripts/ECA_mejorado.R")
 
 df <- ECA(meteo = "input/CR1000_FEBRERO_DM_2025.csv",
           gases = "input/eca_2025_febrero.csv",
-          pm = "input/pm_DM_HOTELES2025.csv",
+          pm = "input/pm_DM_HOTELES2025_acumulado.csv",
           fecha_inicio = "2025-02-20 00:00",
-          fecha_fin = "2025-02-26 23:00",
+          fecha_fin = "2025-02-27 23:00",
           estacion = "DM",
           tipo = "lista")
 
