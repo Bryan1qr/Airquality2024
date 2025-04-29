@@ -57,6 +57,7 @@ ECA <- function(meteo, gases, pm, fecha_inicio, fecha_fin, estacion, tipo){
   g2 <- rollingMean(mydata = g2, pollutant = "o3", width = 8, new.name = "o3_8h", align = "right")
   g2 <- rollingMean(mydata = g2, pollutant = "co", width = 8, new.name = "co_8h", align = "right")
   
+  
   p3 <- read.csv(
     pm, skip = 3, na.strings = "NAN") %>% 
     mutate(date = as.POSIXct(
@@ -75,19 +76,22 @@ ECA <- function(meteo, gases, pm, fecha_inicio, fecha_fin, estacion, tipo){
            pm25 = if_else(pm25/pm10 <= 1 , pm25, NA),
            pm10 = if_else(pm25/pm10 <= 1 , pm10, NA))
   
+  p3 <- data.frame(date = seq(min(m1$date), max(m1$date), by = "1 hour")) %>%
+    left_join(p3, by = "date")
+  
   df <- cbind(p3, m1[,-1], g2[, -1])
   eca <- df %>% 
     mutate(fecha = as.Date(date)) %>% 
     group_by(fecha) %>% 
     summarise(
-      pm25 = mean(pm25, na.rm = T),
-      pm10 = mean(pm10, na.rm = T),
-      no2 = mean(no2, na.rm = T),
-      so2 = mean(so2, na.rm = T),
-      h2s = mean(h2s, na.rm = T),
-      co = mean(co, na.rm = T),
-      co_8h = mean(co_8h, na.rm = T),
-      o3_8h = max(o3_8h, na.rm = T)
+      pm25 = if (sum(!is.na(pm25)) >= 18) mean(pm25, na.rm = TRUE) else NA_real_,
+      pm10 = if (sum(!is.na(pm10)) >= 18) mean(pm10, na.rm = TRUE) else NA_real_,
+      no2 = if (sum(!is.na(no2)) >= 18) mean(no2, na.rm = TRUE) else NA_real_,
+      so2 = if (sum(!is.na(so2)) >= 18) mean(so2, na.rm = TRUE) else NA_real_,
+      h2s = if (sum(!is.na(h2s)) >= 18) mean(h2s, na.rm = TRUE) else NA_real_,
+      co = if (sum(!is.na(co)) >= 18) mean(co, na.rm = TRUE) else NA_real_,
+      co_8h = if (sum(!is.na(co_8h)) >= 18) mean(co_8h, na.rm = TRUE) else NA_real_,
+      o3_8h = if (sum(!is.na(o3_8h)) >= 18) max(o3_8h, na.rm = TRUE) else NA_real_
     )
   if (tipo == "save") {
     openxlsx::write.xlsx(

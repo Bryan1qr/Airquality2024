@@ -36,6 +36,8 @@ ECA <- function(meteo, gases, fecha_inicio, fecha_fin, estacion, tipo){
       h2s = factor_eca(h2s, 34.08196),
       co = factor_eca(co, 28.01055),
       o3 = factor_eca(o3, 47.99820))
+  
+  g2[104:105, -c(8,9)] <- NA # solo para odría!! luego borrar
 
   df <- cbind(m1, g2[, -1])
   df <- df %>% 

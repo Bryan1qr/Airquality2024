@@ -122,10 +122,18 @@ df5 <- ECA(meteo = "input/CR1000_OCTUBRE_2024.csv",
            tipo = "lista")
 
 
+vigil <- ECA(meteo = "input/meteo_vigil_marzo_2025.csv",
+             gases = "input/eca_vigil_marzo_2025.csv",
+             pm = "input/pm_marzo_2025_vigil.csv",
+             fecha_inicio = "2025-03-06 00:00:00",
+             fecha_fin = "2025-03-31 23:00",
+             estacion = "Vigil",
+             tipo = "lista")
+
 a1 <- df2023_6$df %>% mutate(lat = -18.004275, lon = -70.257304, estacion = "EMCA - 01",
                          referencia = "Prolongación Hipólito Unanue")
 
-a2 <- df2023_1$df %>% mutate(lat = -17.993250, lon = -70.243305, estacion = "EMCA - 02", 
+a2 <- vigil$df %>% mutate(lat = -17.993250, lon = -70.243305, estacion = "EMCA - 02", 
                           referencia = "Instituto Vigil")
 
 a3 <- df2023_2$df %>% mutate(lat = -17.980364, lon = -70.239032, estacion = "EMCA - 03",
@@ -176,3 +184,11 @@ x <- dfm %>% select(FECHA, PM25, PM10, NO2, NO, NOX, SO2, H2S, CO, O3, O3_8H, CO
 
 
 openxlsx::write.xlsx(x %>% arrange(FECHA), "dataset_actualizado_2023_2024.xlsx")
+
+
+windroseMap(data = a2, paddle = F, cols = "viridis",
+            latitude = "lat",
+            longitude = "lon",
+            d.icon = 180, popup = "estacion",
+            breaks = c(0,0.2,1.5,3.3,5.4),
+            include.lowest = FALSE)
